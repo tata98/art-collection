@@ -1,0 +1,50 @@
+<div class="row d-flex justify-content-center">
+    <div class="search-form d-flex justify-content-center flex-column">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchKey"
+        placeholder="enter artwork name"
+      />
+      <button class="btn btn-outline-secondary mt-2" (click)="search()">
+        {{ "catalogue.SEARCH" | translate }}
+      </button>
+      <div
+        class="alert alert-danger mt-2"
+        role="alert"
+        *ngIf="searchHasError"
+      >
+        {{ "errors.ENTER_MOVIE_NAME" | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mt-2 flex-row mb-3">
+    <div class="d-flex justify-content-center">
+      <span
+        (click)="fetchMovie(name)"
+        class="badge rounded-pill bg-success ms-1"
+        *ngFor="let name of lastThreeSearches"
+        >{{ name }}</span
+      >
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"  *ngIf="selectedArtwork$ | async as selectedArtwork">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img [src]="selectedArtwork.primaryImage" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ selectedArtwork.title }}</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,28 @@
+{
+    "TITLE": "Art Collection",
+    "errors": {
+      "NOT_FOUND": "Page not found",
+      "ENTER_MOVIE_NAME": "You must enter movie name!"
+    },
+    "auth": {
+      "SIGN_IN": "Sign In",
+      "SIGN_UP": "Sign Up",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "REPEAT_PASSWORD": "Repeat Password",
+      "SIGN_OUT": "Sign Out"
+    },
+    "catalogue": {
+      "ADD_MOVIE": "Add Movie",
+      "ENTER_MOVIE_NAME": "Enter Movie Name...",
+      "SEARCH": "Search",
+      "WATCHED": "Watched",
+      "WATCH_LATER": "Watch Later",
+      "TOMORROW": "Tomorrow",
+      "THIS_WEEK": "This Week",
+      "THIS_MONTH": "This Month",
+      "THIS_YEAR": "This Year",
+      "SELECT": "Select...",
+      "MOVIE_HAS_BEEN_ADDED": "Movie has been added"
+    }
+  }

@@ -1,0 +1,28 @@
+{
+  "TITLE": "ხელოვნების კოლექცია",
+    "errors": {
+      "NOT_FOUND": "გვერდი ვერ მოიძებნა",
+      "ENTER_MOVIE_NAME": "გთხოვთ მიუთითოთ ფილმის სახელი!"
+    },
+    "auth": {
+      "SIGN_IN": "შესვლა",
+      "SIGN_UP": "რეგისტრაცია",
+      "EMAIL": "ელ-ფოსტა",
+      "PASSWORD": "პაროლი",
+      "REPEAT_PASSWORD": "პაროლის გამეორება",
+      "SIGN_OUT": "გამოსვლა"
+    },
+    "catalogue": {
+      "ADD_MOVIE": "ფილმის დამატება",
+      "ENTER_MOVIE_NAME": "ჩაწერეთ ფილმის სახელი...",
+      "SEARCH": "ძებნა",
+      "WATCHED": "ნანახი",
+      "WATCH_LATER": "მოგვიანების სანახავი",
+      "TOMORROW": "ხვალ",
+      "THIS_WEEK": "ამ კვირას",
+      "THIS_MONTH": "ამ თვეს",
+      "THIS_YEAR": "ამ წელს",
+      "SELECT": "არჩევა...",
+      "MOVIE_HAS_BEEN_ADDED": "ფილმი დაემატა"
+    }
+  }
