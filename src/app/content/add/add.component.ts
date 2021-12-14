@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Artwork } from '../models/collection.models';
+import { AddArtworkStorage } from './add-artwork-storage.servce';
 import { addCollectionFacade } from './add-collection.facade';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
-  providers: [addCollectionFacade],
+  providers: [addCollectionFacade, AddArtworkStorage],
 })
 export class AddComponent implements OnInit {
-  lastThreeSearches = [];
 
   searchKey: string = '';
   searchHasError: boolean = false;
-  selectedArtwork$: Artwork | null = null;
+  selectedArtwork$: Observable<Artwork> | null = null;
 
+  get lastThreeSearches(): string[]{
+    return this.facade.lastThreeSearches;
+  }
   constructor(private facade: addCollectionFacade) {}
   search() {
     if (!this.searchKey) {
@@ -24,10 +27,15 @@ export class AddComponent implements OnInit {
     }
 
     this.searchHasError = false;
-    this.facade
+    this.facade.addToLastSearches(this.searchKey);
+    this.selectedArtwork$ = this.facade
       .fetchArtWork(this.searchKey)
-      .subscribe((artwork) => (this.selectedArtwork$ = artwork));
+  }
+  fetchArtWork(title: string) {
+    this.selectedArtwork$ = this.facade.fetchArtWork(title);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.facade.restoreState();
+  }
 }
