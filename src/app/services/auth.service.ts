@@ -17,6 +17,10 @@ export class AuthService {
     return !!this._user;
   }
 
+  get userId() {
+    return this._user?.uid;
+  }
+
   constructor(private auth: AngularFireAuth) {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
