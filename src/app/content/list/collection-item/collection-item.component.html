@@ -1,0 +1,9 @@
+  <div class="card collection_item bg-dark text-white" (click)="goToDetails()"  *ngIf="item">
+    <img [src]="item.artwork?.primaryImage" class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h5 class="card-title">{{ item.artwork?.title }}</h5>
+      <p class="card-text"> {{ item.artwork?.artistDisplayName }}</p>
+      <div class="btn-group">
+      </div>
+    </div>
+  </div>

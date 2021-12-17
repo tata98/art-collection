@@ -1,9 +1,8 @@
 <header>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="navbar navbar-dark shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="/assets/images/logo.svg" class="me-2" />
-        <strong>{{ "TITLE" | translate }}</strong>
+        <img src="/assets/images/logo.png" class="me-2 logo" />
       </a>
       <div>
         <div class="d-flex align-items-center">
@@ -15,17 +14,15 @@
               {{ "auth.SIGN_UP" | translate }}
             </button>
           </ng-container>
-          <button (click)="signOut()" *ngIf="isLoggedIn" class="btn btn-danger">
+          <button (click)="signOut()" *ngIf="isLoggedIn" class="btn sign_out">
             {{ "auth.SIGN_OUT" | translate }}
           </button>
           <button
-            class="lang btn en btn-success ms-2"
-            [class.inactive]="isKa"
+            class="lang btn en ms-2"
             (click)="en()"
           >EN</button>
           <button
-            class="lang btn ka btn-success ms-2"
-            [class.inactive]="isEn"
+            class="lang btn ka ms-2"
             (click)="ka()"
           >GE</button>
         </div>

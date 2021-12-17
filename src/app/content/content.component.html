@@ -1,17 +1,17 @@
 <main>
   <section class="py-5 text-center middle">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light text-white">Welcome to Art Collection</h1>
+      <h1 class="fw-light text-white"> {{ "WELCOME"| translate }} </h1>
       <p class="lead text-white">
-        You can add your favourite artworks.
+      {{ "TITLE" | translate}}
       </p>
       <p>
-        <a class="btn btn-outline-light" routerLink="add">Add Movie</a>
+        <a class="btn btn-outline-light" routerLink="add">{{ "ADD" | translate}}</a>
       </p>
     </div>
   </section>
 
   <section>
-    <!-- <app-movie-list></app-movie-list> -->
+    <app-list></app-list>
   </section>
 </main>

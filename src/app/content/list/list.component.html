@@ -1,3 +1,10 @@
-<p>
-  list works!
-</p>
+
+<div class="album py-5">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <ng-container *ngFor="let item of collection$ | async">
+            <app-collection-item [item]="item"></app-collection-item>
+        </ng-container>
+      </div>
+    </div>
+  </div>

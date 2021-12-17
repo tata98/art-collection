@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/services';
-import { Artwork, ArtworkInfo } from '../models/collection.models';
+import { EventBusService } from 'src/app/services/event-bus.service';
+import { Artwork, ArtworkInfo, FORM_RESET_EVENT_KEY } from '../models/collection.models';
 import { AddArtworkStorage } from './add-artwork-storage.servce';
 import { addCollectionFacade } from './add-collection.facade';
 
@@ -13,7 +15,7 @@ import { addCollectionFacade } from './add-collection.facade';
   providers: [addCollectionFacade, AddArtworkStorage],
 })
 export class AddComponent implements OnInit {
-
+  private unsubscribe$ = new Subject();
   form: FormGroup = new FormGroup({});
   searchKey: string = '';
   searchHasError: boolean = false;
@@ -24,7 +26,7 @@ export class AddComponent implements OnInit {
   }
   submitted = false;
 
-  constructor(private facade: addCollectionFacade, private fb: FormBuilder, private auth: AuthService,) {}
+  constructor(private facade: addCollectionFacade, private fb: FormBuilder, private auth: AuthService, private eventBus: EventBusService) {}
   search() {
     if (!this.searchKey) {
       this.searchHasError = true;
@@ -56,15 +58,30 @@ export class AddComponent implements OnInit {
 
     const body: ArtworkInfo = {
       uid: this.auth.userId,
-      id: selectedArtwork.objectID,
+      objectId: selectedArtwork.objectID,
       review: value.review,
     };
 
     this.facade.submit(body);
   }
 
+  private formReset(){
+    this.form.reset();
+    this.form.updateValueAndValidity();
+
+    this.submitted = false;
+
+    this.form.get('review')?.setValue('');
+  }
+
   ngOnInit() {
     this.buildForm();
     this.facade.restoreState();
+
+  this.eventBus
+    .on(FORM_RESET_EVENT_KEY)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(() => this.formReset());
+
   }
 }

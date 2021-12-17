@@ -21,4 +21,7 @@ export class CollectionApiService {
   checkTitle(id: number) {
     return this.http.get<Artwork>(`${environment.collectionObjectId}${id}`);
   }
+  getArtWorkWithId(id: string |undefined): Observable<Artwork>{
+      return this.http.get<Artwork>(`${environment.collectionObjectId}${id}`);
+  }
 }

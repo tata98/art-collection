@@ -1,14 +1,15 @@
 <main>
   <section class="py-5 text-center middle">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light text-white">{{ "auth.SIGN_UP" | translate }}</h1>
+      <h1 class="fw-3 text-white">{{ "auth.SIGN_UP" | translate }}</h1>
     </div>
   </section>
-  <section class="py-5 d-flex justify-content-center">
+  <section class="py-2 d-flex justify-content-center">
     <form
       (ngSubmit)="signUp(form)"
       #form="ngForm"
       [mustMatch]="['password', 'repeatPassword']"
+      class="shadow p-5"
     >
       <div class="form-floating mb-2">
         <input
@@ -50,7 +51,7 @@
           "auth.REPEAT_PASSWORD" | translate
         }}</label>
       </div>
-      <button class="w-100 btn btn-lg btn-outline-secondary" type="submit">
+      <button class="w-100 btn btn-lg text-white btn-outline-secondary" type="submit">
         {{ "auth.SIGN_UP" | translate }}
       </button>
       <ng-container *ngIf="form.submitted && form.invalid">

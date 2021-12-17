@@ -1,4 +1,5 @@
-<div class="row d-flex justify-content-center">
+<div class="container-custom py-4 shadow mt-3">
+  <div class="row d-flex search justify-content-center p-3 px-5">
     <div class="search-form d-flex justify-content-center flex-column">
       <input
         type="text"
@@ -6,7 +7,7 @@
         [(ngModel)]="searchKey"
         placeholder="enter artwork name"
       />
-      <button class="btn btn-outline-secondary mt-2" (click)="search()">
+      <button class="btn text-white  search_button mt-2" (click)="search()">
         {{ "catalogue.SEARCH" | translate }}
       </button>
       <div
@@ -14,7 +15,7 @@
         role="alert"
         *ngIf="searchHasError"
       >
-        {{ "errors.ENTER_MOVIE_NAME" | translate }}
+        {{ "errors.ENTER_ARTWORK_NAME" | translate }}
       </div>
     </div>
   </div>
@@ -22,89 +23,58 @@
     <div class="d-flex justify-content-center">
       <span
         (click)="fetchArtWork(name)"
-        class="badge rounded-pill bg-success ms-1"
+        class="badge ms-1"
         *ngFor="let name of lastThreeSearches"
         >{{ name }}</span
       >
     </div>
   </div>
+</div>
+
   <div class="container">
-    <div class="row">
-      <div class="col-md-12"  *ngIf="selectedArtwork$ | async as selectedArtwork">
-        <div class="card mb-3">
-          <div class="row g-0">
-            <div class="col-md-6">
-              <img [src]="selectedArtwork.primaryImage" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-6">
-              <div class="card-body">
-                <h5 class="card-title">{{ selectedArtwork.title }}</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
+    <div class="row mt-3">
+      <div class="col-md-6 mx-auto"  *ngIf="selectedArtwork$ | async as selectedArtwork">
+        <div class="card">
+          <img [src]="selectedArtwork.primaryImage" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ selectedArtwork.title }}</h5>
+            <h6 class="card-title">{{ selectedArtwork.artistDisplayName  }}</h6>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- form -->
-  <div class="row mt-3" *ngIf="selectedArtwork$ | async as selectedArtwork">
-    <form [formGroup]="form" (submit)="submit(selectedArtwork)">
-      <div class="row mb-3">
-        <label for="review" class="col-sm-2 col-form-label">Review</label>
-        <div class="col-sm-10">
-          <textarea
-            formControlName="review"
-            class="form-control"
-            id="review"
-          ></textarea>
+  <div class="container">
+    <div class="row m-3" *ngIf="selectedArtwork$ | async as selectedArtwork">
+      <form [formGroup]="form" (submit)="submit(selectedArtwork)">
+        <div class="row mb-3 d-flex justify-content-center text-center">
+          <label for="review" class="col-sm-2 col-form-label">write additional information about the artwork or your personal opinion</label>
+          <div class="col-sm-4">
+            <textarea
+              formControlName="review"
+              class="form-control"
+              id="review"
+              rows="4"
+            ></textarea>
+          </div>
         </div>
-      </div>
-      <!-- <div class="row mb-3">
-        <label for="rating" class="col-sm-2 col-form-label">Rating</label>
-        <div class="col-sm-10">
-          <span class="ms-2" *ngFor="let rating of ratings">
-            <input
-              type="radio"
-              class="form-check-input"
-              [value]="rating"
-              formControlName="rating"
-            />
-          </span>
-        </div>
-      </div> -->
-      <!-- <div class="row mb-3" *ngIf="canWatchLater">
-        <label for="status" class="col-sm-2 col-form-label"
-          >When To Watch</label
-        >
-        <div class="col-sm-10">
-          <select class="form-select" formControlName="whenToWatch">
-            <option [value]="null" hidden>
-              {{ "catalogue.SELECT" | translate }}
-            </option>
-            <option *ngFor="let w of whenToWatch" [value]="w.value">
-              {{ w.label | translate }}
-            </option>
-          </select>
-        </div>
-      </div> -->
-      <button type="submit" class="btn btn-primary">Add</button>
-      <ng-container *ngIf="submitted && form.invalid">
-        <div
-          class="alert alert-danger mt-2"
-          role="alert"
-          *ngIf="form.controls.review?.errors?.required"
-        >
-          რევიუ სავალდებულოა
-        </div>
-        <div
-          class="alert alert-danger mt-2"
-          role="alert"
-          *ngIf="form.controls.review?.errors?.minlength"
-        >
-          განხილვა უნდა იყოს მინიმუმ 10 სიმბოლო
-        </div>
-      </ng-container>
-    </form>
+        <button type="submit" class="btn text-white">Add</button>
+        <ng-container *ngIf="submitted && form.invalid">
+          <div
+            class="alert alert-danger mt-2"
+            role="alert"
+            *ngIf="form.controls.review?.errors?.required"
+          >
+            რევიუ სავალდებულოა
+          </div>
+          <div
+            class="alert alert-danger mt-2"
+            role="alert"
+            *ngIf="form.controls.review?.errors?.minlength"
+          >
+            განხილვა უნდა იყოს მინიმუმ 10 სიმბოლო
+          </div>
+        </ng-container>
+      </form>
+    </div>
   </div>

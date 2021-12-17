@@ -1,5 +1,14 @@
-.header{
+.navbar{
     height: 150px;
-    background-color: cadetblue;
+    background: rgb(92,79,86);
+    background: linear-gradient(90deg, rgba(92,79,86,1) 49%, rgba(133,143,145,1) 100%);
     color: white;
+}
+.logo{
+    height: 100px;
+}
+.sign_out, .en, .ka{
+    background-color: #DED9C4;
+    border: none;
+    color: black;
 }

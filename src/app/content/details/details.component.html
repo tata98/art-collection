@@ -1,3 +1,39 @@
-<p>
-  details works!
-</p>
+<main class="text-center p-5">
+<button (click)="goBack()" class="btn text-white">{{ "BACK" | translate}}</button>
+<div class="container pb-5">
+  <div class="row m-3">
+    <div class="col-md-12"  *ngIf="artworkData$ | async as artworkData">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-7">
+            <img [src]="artworkData.primaryImage"  class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-5">
+            <div class="card-body">
+              <h5 class="card-title">{{ artworkData.title }}</h5>
+              <h3 class="card-title">{{ artworkData.artistDisplayName }}</h3>
+              <p class="card-text">artist nationality - {{artworkData.artistNationality}}</p>
+              <p class="card-text">medium - {{artworkData.medium}}</p>
+              <p class="card-text">culture - {{artworkData.culture}}</p>
+              <p class="card-text">artist bio - {{artworkData.artistDisplayBio}}</p>
+              <p class="card-text"><small class="text-muted">department - {{artworkData.department}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12"  *ngIf="storeData$ | async as storeData">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+               {{"ADDITIONAL_INFO" | translate}}
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">{{storeData.review}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

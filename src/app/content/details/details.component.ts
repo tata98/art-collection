@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { delay, finalize, switchMap, tap } from 'rxjs/operators';
+import { FireApiService } from 'src/app/services/fire-api.service';
+import { LoadingService } from 'src/app/services/loading.service';
+import { Artwork, ArtworkInfo } from '../models/collection.models';
+import { CollectionApiService } from '../services';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +13,33 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  constructor(private activatedRouter: ActivatedRoute) {}
+  storeData$: Observable<ArtworkInfo | undefined> | undefined;
+  artworkData$: Observable<Artwork> | undefined;
+  el: any;
+  el1: any;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private fireApiService: FireApiService,
+    private collectionApiService: CollectionApiService,
+    private router: Router,
+    private loadingService: LoadingService
+  ) {}
+
+  private initartworkDetails() {
+    const id = this.activatedRoute.snapshot.params['id'];
+
+    this.loadingService.start();
+    this.storeData$ = this.fireApiService.getArtwork(id).pipe(
+    tap(x => this.artworkData$ = this.collectionApiService.getArtWorkWithId(x.objectId)), finalize(() => this.loadingService.stop()))
+  }
+
+
+  goBack() {
+    this.router.navigate(['content']);
+  }
 
   ngOnInit() {
-    const id = this.activatedRouter.snapshot.paramMap.get('id');
+    this.initartworkDetails();
   }
 }

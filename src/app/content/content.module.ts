@@ -5,10 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ContentComponent } from './content.component';
 import { ContentRoutingModule } from './content-routing.module';
 import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list.component';
-import { DetailsComponent } from './details/details.component';
 import { SharedModule } from '../shared/shared.module';
 import { CollectionApiService } from './services';
+import { CollectionItemComponent, ListComponent } from './list';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
@@ -24,6 +24,7 @@ import { CollectionApiService } from './services';
     AddComponent,
     ListComponent,
     DetailsComponent,
+    CollectionItemComponent,
   ],
   providers: [CollectionApiService],
 })
